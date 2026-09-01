@@ -1,4 +1,5 @@
 import { screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { renderAt } from '../helpers/render'
 
@@ -90,6 +91,27 @@ describe('exercise page', () => {
     vi.mocked(window.scrollTo).mockClear()
     renderAt('/g/warm-up/e/thoracic-extension')
     expect(window.scrollTo).toHaveBeenCalledWith(0, 0)
+  })
+
+  it('mounts a fresh video element when stepping to the next exercise', async () => {
+    // PREVIOUS/NEXT stay on the same route, so React would otherwise reuse the
+    // same <video> node and only swap its src. WebKit (every iOS browser) keeps
+    // the old playback state on a reused element: its controls still show PAUSE
+    // for a video that is not playing. A new element per source cannot.
+    renderAt('/g/warm-up/e/knee-side-drops')
+    const first: HTMLVideoElement = screen.getByTestId(
+      'exercise-video',
+    ) as HTMLVideoElement
+
+    await userEvent.click(screen.getByRole('link', { name: /NEXT/ }))
+
+    const second: HTMLVideoElement = screen.getByTestId(
+      'exercise-video',
+    ) as HTMLVideoElement
+    expect(second.getAttribute('src')).toBe(
+      `${import.meta.env.BASE_URL}media/0-warm-up-and-postural-exercises/2-supine-straight-leg-circle.mp4`,
+    )
+    expect(second).not.toBe(first)
   })
 
   it('renders not-found for an unknown exercise', () => {
