@@ -1,0 +1,63 @@
+.header {
+  padding: var(--space-xl) 0 var(--space-lg);
+}
+
+.header h1 {
+  font-size: var(--size-display-lg);
+}
+
+.position {
+  margin-bottom: var(--space-sm);
+  color: var(--color-muted);
+  font-size: var(--size-label);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-label);
+}
+
+.divider {
+  margin-bottom: var(--space-lg);
+}
+
+/*
+ * Spec cells: as many 220px-minimum columns as fit, so a page rendering one
+ * cell gets one full-width cell rather than 25% of a 4-up grid. At most three
+ * cells exist (reps/duration/sets/rest, and duration and sets never co-occur);
+ * `note` is a separate block below.
+ *
+ * auto-fit already collapses to 2-up and 1-up as the viewport narrows, which
+ * is what the old 1024px query did by hand — it is gone. The 767px query stays
+ * to force a single column on phones, where two 220px cells would otherwise
+ * still fit side by side and squeeze the values.
+ */
+.specs {
+  display: grid;
+  gap: var(--space-xxs);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: var(--space-lg);
+}
+
+@media (max-width: 767px) {
+  .specs {
+    grid-template-columns: 1fr;
+  }
+}
+
+.note {
+  margin-top: var(--space-lg);
+  border-left: 4px solid var(--color-m-red);
+  background-color: var(--color-surface-card);
+  padding: var(--space-lg);
+}
+
+.noteLabel {
+  margin-bottom: var(--space-xs);
+  color: var(--color-muted);
+  font-size: var(--size-label);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-label);
+}
+
+.noteBody {
+  color: var(--color-body-strong);
+  font-size: var(--size-body-md);
+}

@@ -1,0 +1,12 @@
+/* src/components/BackLink.module.css */
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: 48px;
+  color: var(--color-ink);
+  font-size: var(--size-label);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}

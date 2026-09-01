@@ -1,0 +1,25 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--color-canvas);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  height: var(--nav-height);
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.brand {
+  color: var(--color-ink);
+  font-size: var(--size-label);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}

@@ -1,0 +1,21 @@
+.footer {
+  border-top: 1px solid var(--color-hairline);
+  background-color: var(--color-canvas);
+  padding: var(--space-xxl) 0;
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md) var(--space-xl);
+  justify-content: space-between;
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.line {
+  color: var(--color-muted);
+  font-size: var(--size-caption);
+  letter-spacing: 0.5px;
+}

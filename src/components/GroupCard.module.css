@@ -1,0 +1,40 @@
+/* src/components/GroupCard.module.css */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  background-color: var(--color-surface-card);
+  border-radius: var(--radius-none);
+  padding: var(--space-lg);
+  min-height: 220px;
+}
+
+.index {
+  color: var(--color-muted);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-label);
+}
+
+.title {
+  /* An h3 for document outline reasons only (it sits under the GROUPS h2), so
+     it restates the size and tracking the card design calls for rather than
+     inheriting the global h3 scale. */
+  font-size: var(--size-display-md);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-display);
+  margin-top: auto;
+}
+
+.subtitle {
+  color: var(--color-body);
+  font-size: var(--size-body-md);
+}
+
+.count {
+  color: var(--color-muted);
+  font-size: var(--size-label);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}

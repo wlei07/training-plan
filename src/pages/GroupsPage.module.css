@@ -1,0 +1,40 @@
+/* src/pages/GroupsPage.module.css */
+.hero {
+  padding: var(--space-xxl) 0;
+}
+
+.tagline {
+  margin-top: var(--space-md);
+  color: var(--color-body-strong);
+  font-size: var(--size-title-sm);
+}
+
+.divider {
+  margin-bottom: var(--space-xl);
+}
+
+.heading {
+  margin-bottom: var(--space-lg);
+  font-size: var(--size-label);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-label);
+}
+
+/* 3-up desktop, 2-up tablet, 1-up mobile — columns reduce, cards do not shrink. */
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

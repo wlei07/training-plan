@@ -1,0 +1,76 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-body);
+  font-family: var(--font-display);
+  font-weight: var(--weight-body);
+  font-size: var(--size-body-md);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--color-ink);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: var(--size-display-xl);
+  line-height: 1;
+}
+
+h2 {
+  font-size: var(--size-display-lg);
+  line-height: 1.05;
+}
+
+h3 {
+  font-size: var(--size-title-lg);
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+/* Focus is the only "decoration" the system allows itself. */
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  border-radius: var(--radius-none);
+  cursor: pointer;
+}
+
+video {
+  display: block;
+  max-width: 100%;
+}

@@ -1,0 +1,29 @@
+.switch {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.option {
+  position: relative;
+  padding: var(--space-sm) var(--space-xs);
+  min-height: 48px;
+  color: var(--color-muted);
+  font-size: var(--size-label);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.active {
+  color: var(--color-ink);
+}
+
+/* Active state marked by the M tricolor, per the design system. */
+.active::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 4px;
+  height: 4px;
+  background: var(--m-stripe);
+}

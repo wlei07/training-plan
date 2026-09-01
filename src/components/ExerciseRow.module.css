@@ -1,0 +1,54 @@
+/* src/components/ExerciseRow.module.css */
+.row {
+  display: grid;
+  grid-template-columns: 48px 1fr auto 24px;
+  align-items: center;
+  gap: var(--space-md);
+  min-height: 72px;
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+.number {
+  color: var(--color-muted);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-label);
+}
+
+.name {
+  color: var(--color-ink);
+  font-size: var(--size-title-lg);
+  font-weight: var(--weight-display);
+  text-transform: uppercase;
+}
+
+.reps {
+  color: var(--color-body);
+  font-size: var(--size-body-md);
+}
+
+.chevron {
+  color: var(--color-muted);
+  text-align: right;
+}
+
+@media (max-width: 767px) {
+  .row {
+    grid-template-columns: 36px 1fr;
+    row-gap: var(--space-xxs);
+  }
+
+  .name {
+    font-size: var(--size-title-md);
+  }
+
+  /* Reps drop under the name; the chevron is redundant at this width. */
+  .reps {
+    grid-column: 2;
+  }
+
+  .chevron {
+    display: none;
+  }
+}

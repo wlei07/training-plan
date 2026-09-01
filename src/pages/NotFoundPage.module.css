@@ -1,0 +1,8 @@
+/*
+ * The global stylesheet gives every h1 the 80px hero size. Real pages step down
+ * to 56px in their own module; the not-found page needs the same treatment so a
+ * dead URL does not shout louder than the app itself.
+ */
+.title {
+  font-size: var(--size-display-lg);
+}
