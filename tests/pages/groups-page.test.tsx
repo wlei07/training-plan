@@ -26,9 +26,16 @@ describe('groups page', () => {
     expect(link).toHaveAttribute('href', '/g/warm-up')
   })
 
-  it('shows the exercise count', () => {
+  it('shows each card its own exercise count', () => {
     renderAt('/')
-    expect(screen.getByText('8 exercises')).toBeInTheDocument()
+    // Scoped per card, because several groups share a count (four have 8).
+    for (const group of groups) {
+      const card: HTMLElement = screen
+        .getByText(en.groups[group.id as keyof typeof en.groups].title)
+        .closest('[data-testid="group-card"]') as HTMLElement
+      expect(card, `no card for ${group.id}`).not.toBeNull()
+      expect(card).toHaveTextContent(`${group.exercises.length} exercises`)
+    }
   })
 
   it('shows the group subtitle', () => {
@@ -41,10 +48,11 @@ describe('groups page', () => {
     expect(
       screen.getByRole('heading', { level: 1, name: 'ANTRENMAN PLANI' }),
     ).toBeInTheDocument()
-    expect(
-      screen.getByText('ISINMA VE POSTÜR EGZERSİZLERİ'),
-    ).toBeInTheDocument()
-    expect(screen.getByText('8 egzersiz')).toBeInTheDocument()
+    const card: HTMLElement = screen
+      .getByText('ISINMA VE POSTÜR EGZERSİZLERİ')
+      .closest('[data-testid="group-card"]') as HTMLElement
+    expect(card).not.toBeNull()
+    expect(card).toHaveTextContent('8 egzersiz')
   })
 
   it('orders cards by the group order field', () => {

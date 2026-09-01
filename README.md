@@ -43,8 +43,8 @@ docs/superpowers/  Design spec and implementation plan.
 
 ## Adding a group
 
-Media for six further groups is already on disk under `public/media/`, with
-English reps text in `content/`. Registering one is an edit to **three files**:
+All seven groups from `content/` are registered (49 exercises). Adding a
+further one is an edit to **three files**:
 
 1. `src/data/groups.ts` — append a `Group`: `id`, `order`, `label`, `mediaDir`,
    and the ordered `exercises` with their video filenames. `order` is the sort
@@ -73,10 +73,19 @@ literal-keyed dictionary and the plain `string` ids in `src/data`; indexing
 `t.groups` with `keyof typeof` at a call site compiles with one group and
 collapses to `never` with two.
 
-The workout groups also carry `sets`, `rest`, a `duration` (the stretching
-groups prescribe a hold time rather than reps), and a tempo/drop-set `note`.
-Those fields already exist as optional members of `ExerciseText` and render
-conditionally on the exercise page — no code change needed.
+### Reps, and how held stretches are modelled
+
+`reps` is required on every exercise, because there is no exercise you do zero
+times. A held stretch **is** one repetition, so the stretching groups carry
+`reps: '1'` with the hold time in `duration` — notated the way isometrics
+normally are, `1 × 30s`. The exercise page shows both cells; the group list
+rows show `duration ?? reps`, since `30 seconds` is what you scan a routine
+for and `1` is noise.
+
+The workout groups additionally carry `sets`, `rest`, and a tempo/rest-pause/
+drop-set `note`. All four of these are optional members of `ExerciseText` and
+render conditionally, so a new group populates whichever apply with no code
+change.
 
 ## Deployment
 

@@ -35,7 +35,9 @@ export function ExerciseRow({ group, exercise, position }: ExerciseRowProps) {
       <span className={styles.name} data-testid="exercise-row-name">
         {text.name}
       </span>
-      <span className={styles.reps}>{text.reps}</span>
+      {/* A held stretch carries reps '1' and the hold time in `duration`.
+          '30 seconds' is what you scan a routine for; '1' is noise. */}
+      <span className={styles.reps}>{text.duration ?? text.reps}</span>
       <span className={styles.chevron} aria-hidden="true">
         &rarr;
       </span>
