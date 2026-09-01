@@ -9,7 +9,7 @@ import { findGroup } from '../data/groups'
 import type { Exercise, Group } from '../data/types'
 import { useT, type ExerciseText } from '../i18n'
 import { exerciseText } from '../i18n/lookup'
-import { mediaUrl } from '../lib/media'
+import { mediaUrl, posterUrl } from '../lib/media'
 import { neighbours, type Neighbours } from '../lib/navigation'
 import { NotFoundPage } from './NotFoundPage'
 import styles from './ExercisePage.module.css'
@@ -52,6 +52,7 @@ export function ExercisePage() {
       <MStripe className={styles.divider} />
       <VideoPlayer
         src={mediaUrl(group, exercise)}
+        poster={posterUrl(group, exercise)}
         title={text.name}
         unsupportedMessage={t.ui.videoUnsupported}
       />

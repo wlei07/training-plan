@@ -2,12 +2,19 @@ import styles from './VideoPlayer.module.css'
 
 interface VideoPlayerProps {
   src: string
+  /** Still frame painted before playback. */
+  poster: string
   /** Accessible name for the player. */
   title: string
   unsupportedMessage: string
 }
 
-export function VideoPlayer({ src, title, unsupportedMessage }: VideoPlayerProps) {
+export function VideoPlayer({
+  src,
+  poster,
+  title,
+  unsupportedMessage,
+}: VideoPlayerProps) {
   return (
     <div className={styles.frame}>
       {/*
@@ -24,11 +31,12 @@ export function VideoPlayer({ src, title, unsupportedMessage }: VideoPlayerProps
         data-testid="exercise-video"
         className={styles.video}
         src={src}
+        poster={poster}
         title={title}
         controls
         loop
         playsInline
-        preload="metadata"
+        preload="none"
       >
         {unsupportedMessage}
       </video>

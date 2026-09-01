@@ -31,8 +31,18 @@ describe('exercise page', () => {
     renderAt('/g/warm-up/e/knee-side-drops')
     const video: HTMLElement = screen.getByTestId('exercise-video')
     expect(video).toHaveAttribute('controls')
-    expect(video).toHaveAttribute('preload', 'metadata')
     expect(video).toHaveAttribute('playsinline')
+    // The poster carries the still frame, so no part of the video needs
+    // fetching until the user actually taps play.
+    expect(video).toHaveAttribute('preload', 'none')
+  })
+
+  it('shows the poster frame before playback', () => {
+    renderAt('/g/warm-up/e/knee-side-drops')
+    expect(screen.getByTestId('exercise-video')).toHaveAttribute(
+      'poster',
+      `${import.meta.env.BASE_URL}media/0-warm-up-and-postural-exercises/1-knee-side-drops.jpg`,
+    )
   })
 
   it('shows the position within the group', () => {

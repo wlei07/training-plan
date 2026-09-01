@@ -50,6 +50,22 @@ describe('groups data', () => {
     }
   })
 
+  it('ships a poster image beside every exercise video', () => {
+    // The poster is what the exercise page paints before playback: iOS decodes
+    // no frame from preload alone, so without the image the player is black.
+    for (const group of groups) {
+      for (const exercise of group.exercises) {
+        const path: string = join(
+          process.cwd(),
+          'public/media',
+          group.mediaDir,
+          exercise.video.replace(/\.mp4$/, '.jpg'),
+        )
+        expect(existsSync(path), `missing poster: ${path}`).toBe(true)
+      }
+    }
+  })
+
   it('finds a group by id and returns undefined for an unknown id', () => {
     expect(findGroup('warm-up')?.id).toBe('warm-up')
     expect(findGroup('nope')).toBeUndefined()

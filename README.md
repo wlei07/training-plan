@@ -23,6 +23,7 @@ what you see locally is what deploys.
 | `npm run dev` | Dev server with hot reload |
 | `npm run build` | Type-check, then build to `dist/` |
 | `npm run preview` | Serve the built `dist/` |
+| `npm run posters` | Re-extract the video poster frames (needs ffmpeg) |
 | `npm run typecheck` | `tsc --noEmit` |
 | `npm test` | Run the Vitest suite once |
 | `npm run test:watch` | Vitest in watch mode |
@@ -32,7 +33,8 @@ what you see locally is what deploys.
 ```
 content/        Reps/sets text per group. Source of truth for the locale files.
                 *.tr.txt files are the original Turkish where one exists.
-public/media/   49 exercise videos across 7 group folders (~108 MB).
+public/media/   49 exercise videos across 7 group folders (~108 MB), each with
+                a committed .jpg poster frame beside it (~4.5 MB total).
 src/data/       Structure only: group ids, exercise ids, video filenames.
 src/i18n/       All display text. en.ts defines the shape; tr.ts must match it.
 src/pages/      One file per route.
@@ -41,10 +43,29 @@ src/styles/     Design tokens as CSS custom properties, plus global reset.
 docs/superpowers/  Design spec and implementation plan.
 ```
 
+## Posters
+
+Every exercise page paints `<video poster>` — the video's first frame, kept
+beside it as `<name>.jpg` — instead of relying on the browser to render a
+frame from preloaded metadata. iOS decodes no frame that way, so the player
+was a black rectangle until playback started. With a poster the page needs no
+video bytes at all before the user taps play, which is why `preload` is
+`"none"`.
+
+The posters are generated once and committed, so CI never needs ffmpeg:
+
+```bash
+sudo apt install ffmpeg      # or: npm i -D ffmpeg-static, then FFMPEG=<path>
+npm run posters
+```
+
+Run it after adding or replacing a video. `tests/data/groups.test.ts` fails if
+any registered exercise has no poster on disk.
+
 ## Adding a group
 
 All seven groups from `content/` are registered (49 exercises). Adding a
-further one is an edit to **three files**:
+further one is an edit to **three files** plus a poster run:
 
 1. `src/data/groups.ts` — append a `Group`: `id`, `order`, `label`, `mediaDir`,
    and the ordered `exercises` with their video filenames. `order` is the sort
@@ -65,7 +86,7 @@ What enforces what, precisely:
   exercise has no text in either locale — and equally if a locale carries text
   for something that is not registered.
 - `tests/data/groups.test.ts` fails if a video filename does not name a real
-  file on disk.
+  file on disk, or if its poster image is missing — run `npm run posters`.
 
 Read the dictionary only through `src/i18n/lookup.ts` (`groupText`,
 `exerciseText`). Those accessors hold the single cast between the

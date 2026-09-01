@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { groups } from '../../src/data/groups'
-import { mediaUrl } from '../../src/lib/media'
+import { mediaUrl, posterUrl } from '../../src/lib/media'
 import type { Exercise, Group } from '../../src/data/types'
 
 describe('mediaUrl', () => {
@@ -16,6 +16,26 @@ describe('mediaUrl', () => {
     for (const group of groups) {
       for (const exercise of group.exercises) {
         expect(mediaUrl(group, exercise)).not.toMatch(/[^:]\/\//)
+      }
+    }
+  })
+})
+
+describe('posterUrl', () => {
+  it('swaps the video extension for the poster image extension', () => {
+    const group: Group = groups[0]
+    const exercise: Exercise = group.exercises[0]
+    expect(posterUrl(group, exercise)).toBe(
+      `${import.meta.env.BASE_URL}media/0-warm-up-and-postural-exercises/1-knee-side-drops.jpg`,
+    )
+  })
+
+  it('sits beside the video it belongs to for every exercise', () => {
+    for (const group of groups) {
+      for (const exercise of group.exercises) {
+        expect(posterUrl(group, exercise)).toBe(
+          mediaUrl(group, exercise).replace(/\.mp4$/, '.jpg'),
+        )
       }
     }
   })
