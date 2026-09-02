@@ -37,7 +37,7 @@ tricolor stripe used sparingly as a brand marker.
 - Progress tracking, timers, sets completed, or any persisted user state
   beyond the language preference.
 - Authentication, backend, or database.
-- Content for groups 1a, 1b, 2a, 2b, 3 — their media is relocated but they are
+- Content for groups 1a, 1b, 2a, 2b, 3a — their media is relocated but they are
   not registered in the application.
 - Video transcoding, poster-frame generation, or a CDN. Videos are served as
   plain static `.mp4` files.
@@ -54,16 +54,17 @@ application; the rest are relocated and reserved.
 | — | 1b upper body pull workout | 6 | ✅ translated | 16 MB |
 | — | 2a upper body push post-workout stretching | 8 | ✅ original | 16 MB |
 | — | 2b upper body pull post-workout stretching | 8 | ✅ translated | 16 MB |
-| — | 3 lower body workout | 5 | ✅ translated | 10 MB |
-| — | 4 lower body post-workout stretching | 8 | ✅ original | 17 MB |
+| — | 3a lower body workout | 5 | ✅ translated | 10 MB |
+| — | 3b lower body post-workout stretching | 8 | ✅ original | 17 MB |
 
 49 videos, ~111 MB total. The largest single file is ~3.9 MB, well below
 GitHub's 100 MB per-file limit; the repository stays well below the 1 GB
 GitHub Pages soft limit.
 
 The numbering pairs each workout with its post-workout stretching routine:
-1a→2a, 1b→2b, 3→4. The lower-body stretching group was renumbered from 3 to 4
-on 2026-08-31 to make room for the lower-body workout.
+1a→2a, 1b→2b, 3a→3b. The lower-body stretching group was renumbered from 3 to 4
+on 2026-08-31 to make room for the lower-body workout, then the pair became
+3a/3b on 2026-09-02 so the numbering matches the other workout/stretch pairs.
 
 Groups 1b and 2b originally had **no loose video files** — their videos were
 attachments inside a single `.eml` message, and 2b's reps text existed only as
@@ -128,9 +129,9 @@ training_plan/
 │  ├─ 2a-upper-body-push-workout-stretching.txt
 │  ├─ 2b-upper-body-pull-workout-stretching.txt        # translated
 │  ├─ 2b-upper-body-pull-workout-stretching.tr.txt     # Turkish original
-│  ├─ 3-lower-body-workout.txt                  # translated
-│  ├─ 3-lower-body-workout.tr.txt               # Turkish original
-│  ├─ 4-lower-body-stretching.txt
+│  ├─ 3a-lower-body-workout.txt                 # translated
+│  ├─ 3a-lower-body-workout.tr.txt              # Turkish original
+│  ├─ 3b-lower-body-stretching.txt
 │                                               # (the original .eml messages were deleted
 │                                               #  after extraction — they carried third-party
 │                                               #  email addresses and no unique content)
@@ -149,8 +150,8 @@ training_plan/
 │  ├─ 1b-upper-body-pull-workout/               # 6 videos, from .eml
 │  ├─ 2a-upper-body-push-workout-stretching/    # 8 videos
 │  ├─ 2b-upper-body-pull-workout-stretching/    # 8 videos, from .eml
-│  ├─ 3-lower-body-workout/                     # 5 videos, from .eml
-│  └─ 4-lower-body-stretching/                  # 8 videos
+│  ├─ 3a-lower-body-workout/                    # 5 videos, from .eml
+│  └─ 3b-lower-body-stretching/                 # 8 videos
 ├─ src/
 │  ├─ main.tsx
 │  ├─ App.tsx
@@ -359,9 +360,9 @@ first, per the project's development workflow.
 - No offline support or service worker; videos stream from the host each visit.
 - No progress tracking — the app is a reference, not a logbook.
 - Turkish copy is machine-authored pending the owner's review.
-- All six remaining groups (1a, 1b, 2a, 2b, 3, 4) have their videos and English
+- All six remaining groups (1a, 1b, 2a, 2b, 3a, 3b) have their videos and English
   reps text on disk but are not registered in `groups.ts`. Adding them is
   content work, not development work — no blockers remain.
-- The English text for groups 1b, 2b, and 3 is a translation of the author's
+- The English text for groups 1b, 2b, and 3a is a translation of the author's
   Turkish, not the author's own English. It is worth an owner review; the
   Turkish originals sit beside it as `content/<group>.tr.txt`.

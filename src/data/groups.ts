@@ -9,9 +9,9 @@ import type { Exercise, Group } from './types'
  * tests/i18n/dictionary.test.ts, and a wrong video filename by
  * tests/data/groups.test.ts.
  *
- * `label` carries the author's own group numbering (0, 1a, 1b, 2a, 2b, 3, 4),
+ * `label` carries the author's own group numbering (0, 1a, 1b, 2a, 2b, 3a, 3b),
  * which pairs each workout with its post-workout stretching routine:
- * 1a -> 2a, 1b -> 2b, 3 -> 4. `order` is the sort key.
+ * 1a -> 2a, 1b -> 2b, 3a -> 3b. `order` is the sort key.
  */
 export const groups: readonly Group[] = [
   {
@@ -117,8 +117,8 @@ export const groups: readonly Group[] = [
   {
     id: 'lower-body',
     order: 5,
-    label: '3',
-    mediaDir: '3-lower-body-workout',
+    label: '3a',
+    mediaDir: '3a-lower-body-workout',
     exercises: [
       { id: 'barbell-hip-thrust', video: '1-barbell-hip-thrust.mp4' },
       {
@@ -133,8 +133,8 @@ export const groups: readonly Group[] = [
   {
     id: 'lower-body-stretch',
     order: 6,
-    label: '4',
-    mediaDir: '4-lower-body-stretching',
+    label: '3b',
+    mediaDir: '3b-lower-body-stretching',
     exercises: [
       { id: 'childs-pose', video: '1-childs-pose.mp4' },
       { id: 'cobra-pose', video: '2-cobra-pose.mp4' },
