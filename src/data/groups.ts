@@ -70,26 +70,46 @@ export const groups: readonly Group[] = [
     label: '2a',
     mediaDir: '2a-upper-body-push-workout-stretching',
     exercises: [
-      { id: 'knee-hug-stretch', video: '1-knee-hug-stretch.mp4' },
-      { id: 'standing-wall-chest-stretch', video: '2-standing-wall-chest-stretch.mp4' },
+      {
+        id: 'knee-hug-stretch',
+        video: '1-knee-hug-stretch.mp4',
+        holdSeconds: 30,
+      },
+      {
+        id: 'standing-wall-chest-stretch',
+        video: '2-standing-wall-chest-stretch.mp4',
+        holdSeconds: 30,
+      },
       {
         id: 'kneeling-minor-chest-stretch',
         video: '3-kneeling-minor-chest-stretch.mp4',
+        holdSeconds: 30,
       },
       {
         id: 'standing-both-arm-shoulder-stretch',
         video: '4-standing-both-arm-shoulder-stretch.mp4',
+        holdSeconds: 30,
       },
       {
         id: 'standing-one-arm-shoulder-stretch',
         video: '5-standing-one-arm-shoulder-stretch.mp4',
+        holdSeconds: 30,
       },
       {
         id: 'wall-thoracic-extension-stretch',
         video: '6-wall-thoracic-extension-stretch.mp4',
+        holdSeconds: 30,
       },
-      { id: 'wall-triceps-stretch', video: '7-wall-triceps-stretch.mp4' },
-      { id: 'cobra-pose', video: '8-cobra-pose.mp4' },
+      {
+        id: 'wall-triceps-stretch',
+        video: '7-wall-triceps-stretch.mp4',
+        holdSeconds: 30,
+      },
+      {
+        id: 'cobra-pose',
+        video: '8-cobra-pose.mp4',
+        holdSeconds: 30,
+      },
     ],
   },
   {
@@ -98,20 +118,46 @@ export const groups: readonly Group[] = [
     label: '2b',
     mediaDir: '2b-upper-body-pull-workout-stretching',
     exercises: [
-      { id: 'knee-hug-stretch', video: '1-knee-hug-stretch.mp4' },
-      { id: 'kneeling-lat-stretch', video: '2-kneeling-lat-stretch.mp4' },
-      { id: 'cat-pose-stretch', video: '3-cat-pose-stretch.mp4' },
-      { id: 'thread-the-needle-stretch', video: '4-thread-the-needle-stretch.mp4' },
+      {
+        id: 'knee-hug-stretch',
+        video: '1-knee-hug-stretch.mp4',
+        holdSeconds: 30,
+      },
+      {
+        id: 'kneeling-lat-stretch',
+        video: '2-kneeling-lat-stretch.mp4',
+        holdSeconds: 30,
+      },
+      {
+        id: 'cat-pose-stretch',
+        video: '3-cat-pose-stretch.mp4',
+        holdSeconds: 30,
+      },
+      {
+        id: 'thread-the-needle-stretch',
+        video: '4-thread-the-needle-stretch.mp4',
+        holdSeconds: 30,
+      },
       {
         id: 'wall-thoracic-extension-stretch',
         video: '5-wall-thoracic-extension-stretch.mp4',
+        holdSeconds: 30,
       },
       {
         id: 'standing-wall-biceps-stretch',
         video: '6-standing-wall-biceps-stretch.mp4',
+        holdSeconds: 30,
       },
-      { id: 'kneeling-biceps-stretch', video: '7-kneeling-biceps-stretch.mp4' },
-      { id: 'cobra-pose', video: '8-cobra-pose.mp4' },
+      {
+        id: 'kneeling-biceps-stretch',
+        video: '7-kneeling-biceps-stretch.mp4',
+        holdSeconds: 30,
+      },
+      {
+        id: 'cobra-pose',
+        video: '8-cobra-pose.mp4',
+        holdSeconds: 30,
+      },
     ],
   },
   {
@@ -136,14 +182,46 @@ export const groups: readonly Group[] = [
     label: '3b',
     mediaDir: '3b-lower-body-stretching',
     exercises: [
-      { id: 'childs-pose', video: '1-childs-pose.mp4' },
-      { id: 'cobra-pose', video: '2-cobra-pose.mp4' },
-      { id: '90-90-hip-flexor-stretch', video: '3-90-90-hip-flexor-stretch.mp4' },
-      { id: 'pigeon-pose', video: '4-pigeon-pose.mp4' },
-      { id: 'figure-4-stretch', video: '5-figure-4-stretch.mp4' },
-      { id: 'supine-hamstring-stretch', video: '6-supine-hamstring-stretch.mp4' },
-      { id: 'side-lying-quad-stretch', video: '7-side-lying-quad-stretch.mp4' },
-      { id: 'wall-calf-stretch', video: '8-wall-calf-stretch.mp4' },
+      {
+        id: 'childs-pose',
+        video: '1-childs-pose.mp4',
+        holdSeconds: 30,
+      },
+      {
+        id: 'cobra-pose',
+        video: '2-cobra-pose.mp4',
+        holdSeconds: 30,
+      },
+      {
+        id: '90-90-hip-flexor-stretch',
+        video: '3-90-90-hip-flexor-stretch.mp4',
+        holdSeconds: 30,
+      },
+      {
+        id: 'pigeon-pose',
+        video: '4-pigeon-pose.mp4',
+        holdSeconds: 30,
+      },
+      {
+        id: 'figure-4-stretch',
+        video: '5-figure-4-stretch.mp4',
+        holdSeconds: 30,
+      },
+      {
+        id: 'supine-hamstring-stretch',
+        video: '6-supine-hamstring-stretch.mp4',
+        holdSeconds: 30,
+      },
+      {
+        id: 'side-lying-quad-stretch',
+        video: '7-side-lying-quad-stretch.mp4',
+        holdSeconds: 30,
+      },
+      {
+        id: 'wall-calf-stretch',
+        video: '8-wall-calf-stretch.mp4',
+        holdSeconds: 30,
+      },
     ],
   },
 ]

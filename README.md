@@ -43,6 +43,19 @@ src/styles/     Design tokens as CSS custom properties, plus global reset.
 docs/superpowers/  Design spec and implementation plan.
 ```
 
+## Hold timer
+
+The three stretching groups (`2a`, `2b`, `3b`) prescribe a held position rather
+than sets and reps, so their exercise pages carry a countdown. It starts at the
+exercise's `holdSeconds` in `src/data/groups.ts` — the presence of that field is
+what decides whether a page shows a timer at all — with +/-10s adjustment
+(10-180s), and it sounds a three-tone Web Audio chime at zero. There is no audio
+file: `src/lib/beep.ts` builds the tones from oscillators and stays silent where
+Web Audio is missing. The audio context opens on the START tap, because iOS
+plays nothing from a context opened outside a user gesture.
+
+A stretch prescribed "each side" is one run of the timer per side.
+
 ## Posters
 
 Every exercise page paints `<video poster>` — the video's first frame, kept

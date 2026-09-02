@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react'
+import { act, fireEvent, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { renderAt } from '../helpers/render'
@@ -43,6 +43,50 @@ describe('exercise page', () => {
       'poster',
       `${import.meta.env.BASE_URL}media/0-warm-up-and-postural-exercises/1-knee-side-drops.jpg`,
     )
+  })
+
+  it('offers a hold timer on a stretching exercise, primed to the hold time', () => {
+    renderAt('/g/lower-body-stretch/e/pigeon-pose')
+    expect(screen.getByTestId('hold-timer')).toBeInTheDocument()
+    expect(screen.getByTestId('hold-timer-remaining')).toHaveTextContent('0:30')
+  })
+
+  it('offers no hold timer on a workout exercise', () => {
+    // The workout groups prescribe sets and reps, not a held position, so a
+    // countdown would be meaningless there.
+    renderAt('/g/lower-body/e/barbell-hip-thrust')
+    expect(screen.queryByTestId('hold-timer')).not.toBeInTheDocument()
+  })
+
+  it('offers no hold timer on a warm-up exercise', () => {
+    renderAt('/g/warm-up/e/knee-side-drops')
+    expect(screen.queryByTestId('hold-timer')).not.toBeInTheDocument()
+  })
+
+  it('labels the hold timer in the chosen language', () => {
+    renderAt('/g/lower-body-stretch/e/pigeon-pose', { language: 'tr' })
+    expect(screen.getByRole('button', { name: 'BAŞLAT' })).toBeInTheDocument()
+  })
+
+  it('starts the hold timer over when stepping to the next exercise', () => {
+    // PREVIOUS/NEXT stay on the same route, so without a remount the countdown
+    // would carry its running state into the next stretch.
+    vi.useFakeTimers()
+    try {
+      renderAt('/g/lower-body-stretch/e/childs-pose')
+      fireEvent.click(screen.getByRole('button', { name: 'START' }))
+      act((): void => {
+        vi.advanceTimersByTime(6000)
+      })
+      expect(screen.getByTestId('hold-timer-remaining')).toHaveTextContent('0:24')
+
+      fireEvent.click(screen.getByRole('link', { name: /NEXT/ }))
+
+      expect(screen.getByTestId('hold-timer-remaining')).toHaveTextContent('0:30')
+      expect(screen.getByRole('button', { name: 'START' })).toBeInTheDocument()
+    } finally {
+      vi.useRealTimers()
+    }
   })
 
   it('shows the position within the group', () => {

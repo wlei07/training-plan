@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { BackLink } from '../components/BackLink'
 import { ExerciseNav } from '../components/ExerciseNav'
+import { HoldTimer } from '../components/HoldTimer'
 import { MStripe } from '../components/MStripe'
 import { SpecCell } from '../components/SpecCell'
 import { VideoPlayer } from '../components/VideoPlayer'
@@ -64,6 +65,26 @@ export function ExercisePage() {
         {text.sets ? <SpecCell label={t.ui.setsLabel} value={text.sets} /> : null}
         {text.rest ? <SpecCell label={t.ui.restLabel} value={text.rest} /> : null}
       </div>
+      {exercise.holdSeconds ? (
+        /*
+          Keyed on the exercise for the same reason the video is keyed on its
+          src: PREVIOUS/NEXT stay on this route, so a reused timer would carry
+          a running countdown into the next stretch. A fresh element starts at
+          the new exercise's hold time, stopped.
+        */
+        <HoldTimer
+          key={exercise.id}
+          seconds={exercise.holdSeconds}
+          labels={{
+            title: t.ui.timerLabel,
+            start: t.ui.timerStart,
+            pause: t.ui.timerPause,
+            reset: t.ui.timerReset,
+            add: t.ui.timerAdd,
+            subtract: t.ui.timerSubtract,
+          }}
+        />
+      ) : null}
       {text.note ? (
         <div className={styles.note}>
           <p className={styles.noteLabel}>{t.ui.noteLabel}</p>

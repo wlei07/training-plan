@@ -1,0 +1,78 @@
+.timer {
+  margin-top: var(--space-lg);
+  padding: var(--space-lg);
+  background-color: var(--color-surface-soft);
+  border-radius: var(--radius-none);
+}
+
+.title {
+  color: var(--color-muted);
+  font-size: var(--size-label);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.remaining {
+  margin-top: var(--space-xs);
+  color: var(--color-ink);
+  font-size: var(--size-display-md);
+  font-weight: var(--weight-display);
+  /* Digits keep their column as the count changes, so nothing shifts. */
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+}
+
+.primary,
+.secondary,
+.step {
+  min-height: 48px;
+  padding: var(--space-sm) var(--space-lg);
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-none);
+  background-color: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: var(--size-label);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: var(--color-ink);
+  color: var(--color-canvas);
+}
+
+.secondary,
+.step {
+  border-color: var(--color-hairline);
+  color: var(--color-body-strong);
+}
+
+.step {
+  margin-inline-start: auto;
+  padding-inline: var(--space-md);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Only the first of the two step buttons is pushed to the far end. */
+.step + .step {
+  margin-inline-start: 0;
+}
+
+.primary:disabled,
+.secondary:disabled,
+.step:disabled {
+  border-color: var(--color-hairline-strong);
+  color: var(--color-muted);
+  cursor: not-allowed;
+}

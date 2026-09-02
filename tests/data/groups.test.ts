@@ -3,6 +3,9 @@ import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { findExercise, findGroup, groups } from '../../src/data/groups'
 import type { Exercise, Group } from '../../src/data/types'
+import { en } from '../../src/i18n/en'
+import type { ExerciseText } from '../../src/i18n'
+import { exerciseText } from '../../src/i18n/lookup'
 
 describe('groups data', () => {
   it('registers the warm-up group first', () => {
@@ -62,6 +65,28 @@ describe('groups data', () => {
           exercise.video.replace(/\.mp4$/, '.jpg'),
         )
         expect(existsSync(path), `missing poster: ${path}`).toBe(true)
+      }
+    }
+  })
+
+  it('gives every exercise with a hold time a holdSeconds default', () => {
+    // The countdown timer renders off holdSeconds, while the spec cell shows
+    // the localised duration copy. Neither is derivable from the other, so
+    // this keeps the pair from drifting when a group is added or reworded.
+    for (const group of groups) {
+      for (const exercise of group.exercises) {
+        const where: string = `${group.id}/${exercise.id}`
+        const text: ExerciseText | undefined = exerciseText(
+          en,
+          group.id,
+          exercise.id,
+        )
+        expect(text, `missing text: ${where}`).toBeDefined()
+        if (text?.duration) {
+          expect(exercise.holdSeconds, `missing holdSeconds: ${where}`).toBe(30)
+        } else {
+          expect(exercise.holdSeconds, `unexpected holdSeconds: ${where}`).toBeUndefined()
+        }
       }
     }
   })
